@@ -1,11 +1,15 @@
+#Algoritmo para verificar si un numero es primo
 num=int(input("Ingrese un numero : "))
-factorial=1
-if num<0:
-    print("ERROR debe colocar numeros positivos")
-elif num==0:
-    print("El factorial del Numero 0 es 1")
-else:
-    for i in range(1,num+1):  # Elbucle For utiliza el i comenza en 1 y va hasta el num+1 que seria el range y almacena el valor hasta terminar el bucle
-      factorial *=i     
-print(factorial)
 
+if num<=1:
+    print("El numero es primo")
+else:
+    primo= True
+    for i in range(2,num):
+        if num %i ==0:
+            primo= False
+            break
+    if primo:
+        print(num, "Es primo ")
+    else:
+        print(num,"No es primo")
