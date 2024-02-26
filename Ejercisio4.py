@@ -1,5 +1,10 @@
 #Algortimo para conversitr grados Celcius a Farenheit
+def Celcius_a_Farehenit(celcius):
+    Farenhenti=(celcius*1.8)+32
+    return Farenhenti
 
-GradosC=float(input("Ingrese los grados Celcius a convertir: "))
-GradosF=float(GradosC*1.8)+32
-print(GradosC, " Grados celcius son ", GradosF, "Grados Farehenit")
+celcius = float ( input ( "Ingrese los grados Celcius a convertir: " ))
+Farenhti= Celcius_a_Farehenit(celcius)
+print (Farenhti)
+
+
