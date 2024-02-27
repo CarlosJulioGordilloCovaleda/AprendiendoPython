@@ -7,7 +7,7 @@ productos = tuple((
     "Mountain Dew", 
     "Dr Pepper", 
     "Schweppes", 
-    "Mirinda", 
+    "Miranda", 
     "Lift"))
 precios = tuple((
     4500, 
