@@ -3,17 +3,21 @@
 # 3 Categorias 10 productos por categorias y 2 promiciones po categoria
 
 # 3 Categorias panaderia basica,postres,gourmet 
-Menu=list(
-    productos_panaderia = {
-    'Pan blanco': 800,
-    'Pan integral': 1000,
-    'Bollo de pan': 600,
-    'Croissant': 2300,
-    'Pan de sal': 600,
-    'Bagel': 1500,
-    'Pan de dulce': 500,
-    'Tamal': 5500,
-    'Embuelto': 3800,
-    'Empanada de carne': 2300
+Menu = {
+    "Tradicionales":[
+        {"nombre":"Pan de dulce", "Precio": 1000},
+        {"nombre": "Pan de Sal", "Precio": 1000},
+        {"nombre": "Croasan", "Precio": 1500},
+        {"nombre": "Empanadas de pollo", "Precio": 1800},
+        {"nombre": "Empanadas de queso", "Precio": 0.6},
+        {"nombre": "Tamales", "Precio": 0.6},
+        {"nombre": "Embuelto", "Precio": 0.6},
+        {"nombre": "Tamal Tolimense", "Precio": 0.6},
+        {"nombre": "Panuchas", "Precio": 0.6},
+        {"nombre": "Galletas", "Precio": 0.6},
+    ]        
+}
+for i,val in enumerate("nombre"): 
+    print(f"""{i}, {val}, ${"precios"[i]} """)
 
-
+print(Menu)
