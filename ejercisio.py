@@ -11,28 +11,67 @@ Menu = {
         {"nombre": "Empanadas de pollo", "Precio": 1800},
         {"nombre": "Empanadas de queso", "Precio": 1300},
         {"nombre": "Tamales", "Precio": 1700},
-        {"nombre": "Embuelto", "Precio": 1800},
+        {"nombre": "Envuelto", "Precio": 1800},
         {"nombre": "Tamal Tolimense", "Precio": 5000},
         {"nombre": "Panuchas", "Precio": 2000},
         {"nombre": "Galletas", "Precio": 2300},
-    ]        
+    ],
+    "Postres":[
+        {"nombre":"Pastel de chocolate", "Precio": 2500},
+        {"nombre": "Helado de vainilla", "Precio": 1800},
+        {"nombre": "Tarta de fresa", "Precio": 2200},
+        {"nombre": "Brownie", "Precio": 2000},
+        {"nombre": "Gelatina de frutas", "Precio": 1500},
+        {"nombre": "Flan casero", "Precio": 1900},
+        {"nombre": "Fresas con Crema", "Precio": 2100},
+        {"nombre": "Tiramisú", "Precio": 2600},
+        {"nombre": "Mousse de limón", "Precio": 1700},
+        {"nombre": "Cheesecake de frutos rojos", "Precio": 2800}
+    ],
+    "Bebidas":[
+        {"nombre":"Agua", "Precio": 500},
+        {"nombre": "Café", "Precio": 1200},
+        {"nombre": "Té", "Precio": 800},
+        {"nombre": "Jugo de naranja", "Precio": 1500},
+        {"nombre": "Refresco", "Precio": 1700},
+        {"nombre": "Limonada", "Precio": 1800},
+        {"nombre": "Smoothie", "Precio": 2000},
+        {"nombre": "Milkshake", "Precio": 2200},
+        {"nombre": "Cerveza", "Precio": 2500},
+        {"nombre": "Vino", "Precio": 3000}
+    
+    ]    
 }
 
-print ("                                        Menu                                        ")
-for i in Menu.keys(): 
-    print(" - ",i)
-for indice,producto in enumerate(Menu["Tradicionales"],start=1):
-    print(" - {}. {} : $ {}".format(indice, producto["nombre"], producto["Precio"]))
+print 
+("                                        Menu                                        ")
 
-opcion=int(input("Seleccione el producto que desea comprar : "))
-producto_seleccionado = Menu["Tradicionales"][opcion - 1]
-print(f"El producto que usted escogio es {producto_seleccionado['nombre']} con un valor de  $ {producto_seleccionado['Precio']}")
-dinero=int(input("El valor del dinero disponible $ : "))
-vueltos=dinero-producto_seleccionado["Precio"]
-if dinero>=opcion:
-    print(f"Gracias por su compra, su regreso es de $  {vueltos}")
-else:
-    print(f"El dinero depositado no es suficiente le falta un total de $ {-vueltos}")
+for categoria in Menu.keys(): 
+    print(" - ",categoria)
+categoria_selec=input("Seleccione una categoria : ").capitalize()
+if categoria_selec in Menu:
+    productos_categoria=Menu[categoria_selec]
+    print(f"\nProductos disponibles en la categoría {categoria_selec}:")
+
+    for indice,producto in enumerate(productos_categoria,start=1):
+         print(f"{indice}. {producto['nombre']} : ${producto['Precio']}")
+    
+    opcion=int(input("Seleccione el producto que desea comprar : "))
+
+
+    if 1<=opcion<=len(productos_categoria):
+        producto_seleccionado=productos_categoria[opcion-1]
+        print(f"El producto que usted escogio es {producto_seleccionado['nombre']} con un valor de  $ {producto_seleccionado['Precio']}")
+        dinero=int(input("ingrese el valor del dinero disponible $ : "))
+        vueltos=dinero-producto_seleccionado["Precio"]
+        if vueltos>=0:
+            print(f"Gracias por su compra, su regreso es de $  {vueltos}")    
+        else:
+            print(f"El dinero depositado no es suficiente le falta un total de $ {-vueltos}")
+    else:
+        print("La opcion seleccionada no es validad")
+else:    
+    print("La categoria ingresada es invalida")
 
 
 
