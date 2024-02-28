@@ -1,93 +1,70 @@
 # Menú de la panadería
-menu = {
-    "Pan": {
-        "Pan de trigo": 0.5,
-        "Pan de centeno": 0.6,
-        "Pan integral": 0.7,
-        "Bollos de pan": 0.4,
-        "Panecillos de leche": 0.8,
-        "Pan de avena": 0.7,
-        "Panecillos de queso": 0.9,
-        "Pan de nueces": 1.0,
-        "Rosquillas": 0.6,
-        "Panecillos de cebolla": 0.8
-    },
-    "Repostería": {
-        "Croissant": 1.0,
-        "Napolitana de chocolate": 1.2,
-        "Tarta de manzana": 2.5,
-        "Magdalenas": 0.8,
-        "Donuts": 1.0,
-        "Galletas de mantequilla": 0.6,
-        "Palmeras de chocolate": 1.2,
-        "Pastelitos de crema": 1.5,
-        "Buñuelos de viento": 1.2,
-        "Roscón de reyes": 3.0
-    },
-    "Bebidas": {
-        "Café": 1.5,
-        "Té": 1.2,
-        "Jugo de naranja": 2.0,
-        "Refresco de cola": 1.8,
-        "Agua mineral": 1.0,
-        "Cerveza de barril": 2.5,
-        "Vino tinto": 3.0,
-        "Batido de frutas": 2.2,
-        "Café con leche": 1.8,
-        "Limonada": 1.5
-    }
+Menu = {
+    "Tradicionales":[
+        {"nombre":"Pan de dulce", "Precio": 1000},
+        {"nombre": "Pan de Sal", "Precio": 1000},
+        {"nombre": "Croasan", "Precio": 1500},
+        {"nombre": "Empanadas de pollo", "Precio": 1800},
+        {"nombre": "Empanadas de queso", "Precio": 1300},
+        {"nombre": "Tamales", "Precio": 1700},
+        {"nombre": "Envuelto", "Precio": 1800},
+        {"nombre": "Tamal Tolimense", "Precio": 5000},
+        {"nombre": "Panuchas", "Precio": 2000},
+        {"nombre": "Galletas", "Precio": 2300},
+    ],
+    "Postres":[
+        {"nombre":"Pastel de chocolate", "Precio": 2500},
+        {"nombre": "Helado de vainilla", "Precio": 1800},
+        {"nombre": "Tarta de fresa", "Precio": 2200},
+        {"nombre": "Brownie", "Precio": 2000},
+        {"nombre": "Gelatina de frutas", "Precio": 1500},
+        {"nombre": "Flan casero", "Precio": 1900},
+        {"nombre": "Fresas con Crema", "Precio": 2100},
+        {"nombre": "Tiramisú", "Precio": 2600},
+        {"nombre": "Mousse de limón", "Precio": 1700},
+        {"nombre": "Cheesecake de frutos rojos", "Precio": 2800}
+    ]    
 }
 
-# Promociones
-promociones = {
-    "Desayuno Especial": {
-        "Café": 1.5,
-        "Croissant": 1.0
-    },
-    "Merienda Feliz": {
-        "Magdalenas": 0.8,
-        "Jugo de naranja": 2.0
-    }
-}
+print("Menú de la Panadería\n")
 
-# Mostrar menú de la panadería
-print("---- Menú de la Panadería ----")
-for categoria, productos in menu.items():
-    print(categoria + ":")
-    for producto, precio in productos.items():
-        print("- {} (${:.2f})".format(producto, precio))
-    print()
+# Mostrar las categorías disponibles
+for categoria in Menu.keys(): 
+    print(categoria)
 
-# Mostrar promociones
-print("\nPromociones:")
-for promocion, items in promociones.items():
-    print("- {}:".format(promocion))
-    for item, precio in items.items():
-        print("  - {} (${:.2f})".format(item, precio))
+# Pedir al usuario la selección de categoría
+categoria_seleccionada = input("Seleccione una categoría: ").capitalize()
 
-# Proceso de compra
-print("\n¡Bienvenido a la panadería!")
-total_cost = 0
-while True:
-    producto = input("\nIngrese el producto que desea comprar (o escriba 'fin' para terminar la compra): ").capitalize()
-    if producto == 'Fin':
-        break
-    if any(producto in productos for productos in menu.values()):
-        cantidad = int(input("Ingrese la cantidad que desea: "))
-        if producto in promociones:
-            if producto in promociones[producto]:
-                total_cost += promociones[producto][producto] * cantidad
-            else:
-                total_cost += menu[producto] * cantidad
+# Verificar si la categoría seleccionada existe en el menú
+if categoria_seleccionada in Menu:
+    productos_categoria = Menu[categoria_seleccionada]
+
+    # Mostrar los productos de la categoría seleccionada
+    print(f"\nProductos disponibles en la categoría {categoria_seleccionada}:")
+    for indice, producto in enumerate(productos_categoria, start=1):
+        print(f"{indice}. {producto['nombre']} : ${producto['Precio']}")
+
+    # Pedir al usuario la selección del producto
+    opcion = int(input("Seleccione el producto que desea comprar: "))
+
+    # Verificar si la opción seleccionada es válida
+    if 1 <= opcion <= len(productos_categoria):
+        producto_seleccionado = productos_categoria[opcion - 1]
+        print(f"\nHa seleccionado {producto_seleccionado['nombre']} con un precio de ${producto_seleccionado['Precio']}")
+
+        # Pedir al usuario que ingrese el dinero disponible
+        dinero = int(input("Ingrese el valor del dinero disponible: $ "))
+
+        # Calcular el cambio
+        cambio = dinero - producto_seleccionado['Precio']
+
+        # Verificar si el dinero es suficiente
+        if cambio >= 0:
+            print(f"Gracias por su compra. Su cambio es de ${cambio}.")
         else:
-            total_cost += menu[producto] * cantidad
+            print(f"El dinero depositado no es suficiente. Le falta un total de ${abs(cambio)}.")
+
     else:
-        print("El producto ingresado no está en el menú. Por favor, elija otro.")
-
-efectivo = float(input("\nIngrese la cantidad de dinero que posee: $"))
-cambio = efectivo - total_cost
-
-if cambio < 0:
-    print("Lo siento, no tiene suficiente dinero para realizar la compra.")
+        print("La opción seleccionada no es válida.")
 else:
-    print("\nGracias por su compra. Su cambio es: ${:.2f}".format(cambio))
+    print("La categoría ingresada no está en el menú.")
