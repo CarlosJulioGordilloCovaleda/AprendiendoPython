@@ -2,7 +2,7 @@
 # uno debe seleccionar la cantidad de producto que quiera y al final que compruebe precios ventas y todo lo del anteior ejemplo
 # 3 Categorias 10 productos por categorias y 2 promiciones po categoria
 
-# 3 Categorias panaderia basica,postres,gourmet 
+# 3 Categorias panaderia basica,postres,bebidas
 Menu = {
     "Tradicionales":[
         {"nombre":"Pan de dulce", "Precio": 1000},
@@ -32,14 +32,21 @@ Menu = {
         {"nombre":"Agua", "Precio": 500},
         {"nombre": "Café", "Precio": 1200},
         {"nombre": "Té", "Precio": 800},
-        {"nombre": "Jugo de naranja", "Precio": 1500},
+        {"nombre": "Jarra de Jugo de naranja", "Precio": 6000},
         {"nombre": "Refresco", "Precio": 1700},
         {"nombre": "Limonada", "Precio": 1800},
         {"nombre": "Smoothie", "Precio": 2000},
         {"nombre": "Milkshake", "Precio": 2200},
         {"nombre": "Cerveza", "Precio": 2500},
         {"nombre": "Vino", "Precio": 3000}
-    
+    ],
+     "Superpromos":[
+        {"nombre":"Lleve 5 Tamales Tolimnenses por SOLO 22000","Precio": 20000},
+        {"nombre":"Lleve un Tamal Tolimnense mas limonada por SOLO 6000","Precio": 6000},
+        {"nombre":"lleve 5 empanadas de Pollo + Jarra de jugo de naranja SOLO por 22000","Precio": 13990},
+        {"nombre":"Lleve 10 Panuchas por SOLO 9599","Precio": 9599},
+        {"nombre":"Lleve Gelatina de frutas + tarta de fresa + Pastel de chocolate por SOLO 5999","Precio": 5999},
+        {"nombre":"Lleve 2 embueltos mas cafe por SOLO 4999","Precio": 4999},
     ]    
 }
 
@@ -47,7 +54,8 @@ print
 ("                                        Menu                                        ")
 
 for categoria in Menu.keys(): 
-    print(" - ",categoria)
+        print(" - ",categoria)
+
 categoria_selec=input("Seleccione una categoria : ").capitalize()
 if categoria_selec in Menu:
     productos_categoria=Menu[categoria_selec]
