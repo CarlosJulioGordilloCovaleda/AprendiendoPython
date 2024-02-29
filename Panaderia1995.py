@@ -65,11 +65,14 @@ if categoria_selec in Menu:
          print(f"{indice}. {producto['nombre']} : ${producto['Precio']}")
     
     opcion=int(input("Seleccione el producto que desea comprar : "))
+  
 
-
+        
     if 1<=opcion<=len(productos_categoria):
         producto_seleccionado=productos_categoria[opcion-1]
-        print(f"El producto que usted escogio es {producto_seleccionado['nombre']} con un valor de  $ {producto_seleccionado['Precio']}")
+        cantidad=int(input("Que cantidad desea comprar : "))
+        cantidad_comprada=cantidad*producto_seleccionado['Precio']
+        print(f"El producto que usted escogio es {cantidad} {producto_seleccionado['nombre']} con un valor de  $ {cantidad_comprada}")
         dinero=int(input("ingrese el valor del dinero disponible $ : "))
         vueltos=dinero-producto_seleccionado["Precio"]
         if vueltos>=0:
@@ -80,6 +83,3 @@ if categoria_selec in Menu:
         print("La opcion seleccionada no es validad")
 else:    
     print("La categoria ingresada es invalida")
-
-
-
