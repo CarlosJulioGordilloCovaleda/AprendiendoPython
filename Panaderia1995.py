@@ -52,34 +52,39 @@ Menu = {
 
 print 
 ("                                        Menu        Panaderia 1995                                ")
-
-for categoria in Menu.keys(): 
+while True:
+    print(" Elija una Categoria escribiendo su nombre. ")
+    for categoria in Menu.keys(): 
         print(" - ",categoria)
-
-categoria_selec=input("Seleccione una categoria : ").capitalize()
-if categoria_selec in Menu:
-    productos_categoria=Menu[categoria_selec]
-    print(f"\nProductos disponibles en la categoría {categoria_selec}:")
-
-    for indice,producto in enumerate(productos_categoria,start=1):
-         print(f"{indice}. {producto['nombre']} : ${producto['Precio']}")
+    categoria_selec=input("Seleccione una categoria : ").capitalize()
     
-    opcion=int(input("Seleccione el producto que desea comprar : "))
-  
+    if categoria_selec in Menu:
+        productos_categoria=Menu[categoria_selec]
+        print(f"\nProductos disponibles en la categoría {categoria_selec}:")
 
-        
-    if 1<=opcion<=len(productos_categoria):
-        producto_seleccionado=productos_categoria[opcion-1]
-        cantidad=int(input("Que cantidad desea comprar : "))
-        cantidad_comprada=cantidad*producto_seleccionado['Precio']
-        print(f"El producto que usted escogio es {cantidad} {producto_seleccionado['nombre']} con un valor de  $ {cantidad_comprada}")
-        dinero=int(input("ingrese el valor del dinero disponible $ : "))
-        vueltos=dinero-producto_seleccionado["Precio"]
-        if vueltos>=0:
-            print(f"Gracias por su compra, su regreso es de $  {vueltos}")    
+        for indice,producto in enumerate(productos_categoria,start=1):
+            print(f"{indice}. {producto['nombre']} : ${producto['Precio']}")
+        opcion=int(input("Seleccione el producto que desea comprar : "))
+            
+        if 1<=opcion<=len(productos_categoria):
+            producto_seleccionado=productos_categoria[opcion-1]
+            cantidad=int(input("Que cantidad desea comprar : "))
+            cantidad_comprada=cantidad*producto_seleccionado['Precio']
+            print(f"El producto que usted escogio es {cantidad} {producto_seleccionado['nombre']} con un valor de  $ {cantidad_comprada}")
+            dinero=int(input("ingrese el valor del dinero disponible $ : "))
+            vueltos=dinero-cantidad_comprada
+            if vueltos>=0:
+                print(f"Gracias por su compra, su regreso es de $  {vueltos}")  
+                break  
+            else:
+                print(f"El dinero depositado no es suficiente")
+                volver=input("Si quiere volver al menu escribir la letra (S) sino para salir la letra (N) : ")
+                if volver.capitalize()!="S":
+                    break      
         else:
-            print(f"El dinero depositado no es suficiente le falta un total de $ {-vueltos}")
-    else:
-        print("La opcion seleccionada no es validad")
-else:    
-    print("La categoria ingresada es invalida")
+            print("La opcion seleccionada no es validad")
+    else:    
+        print("La categoria ingresada es invalida")
+        continuar=input("Ingreso mal la categoria ingrese la letra (S) para volver al menu o (N) para culminar.")
+        if continuar.capitalize() !="S":
+            break
