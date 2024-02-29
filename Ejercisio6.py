@@ -16,4 +16,3 @@ else:
     a=b
     b=s
     contador+=1
-
